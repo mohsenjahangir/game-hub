@@ -16,7 +16,7 @@ const PlatfromFilter = () => {
                 <Menu.Positioner>
                     <Menu.Content>
                         {data.map((platform)=>
-                        <Menu.Item value={platform.slug}>{
+                        <Menu.Item key={platform.id} value={platform.slug}>{
                             platform.name
                         }</Menu.Item>
                         )}
