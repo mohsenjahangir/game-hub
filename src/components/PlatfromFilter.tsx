@@ -1,7 +1,7 @@
 import { Button, Menu, Portal } from '@chakra-ui/react'
-import { LuChevronRight } from 'react-icons/lu'
 import usePlatform from '../hooks/usePlatform';
 import type { Platform } from '../hooks/useGame';
+import { BsChevronBarDown } from 'react-icons/bs';
 
 interface Props {
     onSelectedPlatform: (platform: Platform) => void;
@@ -16,7 +16,7 @@ const PlatfromFilter = ({ onSelectedPlatform, selectedPlatform }: Props) => {
         <Menu.Root>
             <Menu.Trigger asChild>
                 <Button variant="outline" size="sm">
-                    {selectedPlatform?.name||"Platforms"} <LuChevronRight />
+                    {selectedPlatform?.name||"Platforms"} <BsChevronBarDown />
                 </Button>
             </Menu.Trigger>
             <Portal>
