@@ -1,4 +1,4 @@
-import { Card, Heading, HStack, Image, Text } from "@chakra-ui/react"
+import { Card, Heading, HStack, Image } from "@chakra-ui/react"
 import type{ Game } from "../hooks/useGame"
 import IconPlatforms from "./IconPlatforms"
 import Metacritic from "./Metacritic"
