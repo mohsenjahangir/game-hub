@@ -1,30 +1,44 @@
 
-import useGenre, {type Genre } from '../hooks/useGenre'
+import useGenre, { type Genre } from '../hooks/useGenre'
 
-import { Button, HStack, Image, List, ListItem, Spinner } from '@chakra-ui/react';
+import { Button, Heading, HStack, Image, List, ListItem, Spinner } from '@chakra-ui/react';
 import getCroppedImageUrl from '../services/imageUrl';
 
 interface Props {
     onSelectGenre: (genre: Genre | null) => void
-    selectedGenre:Genre |null
+    selectedGenre: Genre | null
 }
 
-const GenreList = ({ onSelectGenre,selectedGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     const { data, loading, errors } = useGenre();
 
     if (loading) return <Spinner />
     if (errors) return null;
     return (
-        <List.Root>
-            {data.map((genre) =>
-                <ListItem key={genre.id} padding={1}>
-                    <HStack>
-                        <Image boxSize='32px' borderRadius={10} src={getCroppedImageUrl(genre.image_background)} />
-                        <Button fontWeight={genre.id===selectedGenre?.id?'bold':'normal'} onClick={() => onSelectGenre(genre)} variant='ghost' fontSize={'lg'}>{genre.name}</Button>
-                    </HStack>
-                </ListItem>
-            )}
-        </List.Root>
+        <>
+            <Heading fontSize={'3xl'} marginBottom={3}>Genres</Heading>
+            <List.Root>
+                {data.map((genre) =>
+                    <ListItem key={genre.id} padding={1}>
+                        <HStack>
+                            <Image boxSize='32px' borderRadius={10} src={getCroppedImageUrl(genre.image_background)} />
+                            <Button
+                                flex="1"
+                                justifyContent="flex-start"
+                                whiteSpace="normal"
+                                textAlign="left"
+                                height="auto"
+                                padding={0}
+                                variant="ghost"
+                                fontSize="lg"
+                                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                                onClick={() => onSelectGenre(genre)}
+                            >{genre.name}</Button>
+                        </HStack>
+                    </ListItem>
+                )}
+            </List.Root>
+        </>
     )
 }
 
